@@ -15,6 +15,7 @@ var highScoreButton = document.getElementById('highscore-button');
 var highScoreLister = document.getElementById('highScoreLister');
 var highScoreInitialsLister = document.getElementById('highScoreInitialsLister');
 var highScoreDiv = document.getElementById("highScoreDiv")
+var submitHighScore = document.getElementById("submitHighScore")
 
 //main page - quiz desctiption and button to start quiz
 var startPage = function () {
@@ -177,6 +178,7 @@ var endGamePage = function () {
     var storedName = localStorage.getItem("highScoreInitials");
     window.alert(storedName)
 
+
     //build page
     askQuestion.textContent = "All Done!";
     choiceList.style.display = "none";
@@ -184,11 +186,14 @@ var endGamePage = function () {
     finalScoreP.textContent = "Your final score is " + currentScore;
 
     //save to local storage
-    // if (currentScore > storedScore) {
-        localStorage.setItem('highScore' , currentScore); 
-        var input = document.getElementById("initials").value;
-        localStorage.setItem("highScoreInitials", input);
-    // }
+    submitHighScore.addEventListener("click" , saveHighScore);
+    var saveHighScore = function () {
+        if (currentScore > storedScore) {
+            localStorage.setItem('highScore' , currentScore); 
+            var input = document.getElementById("initials").value;
+            localStorage.setItem("highScoreInitials", input);
+        }
+    }  
 }
 
 //Add high score to page
@@ -202,3 +207,5 @@ var showHighScores = function (event) {
 }
 
 startPage();
+
+//event listener to submit button to save score initals
