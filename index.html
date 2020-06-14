@@ -8,7 +8,9 @@
 </head>
 <body>
     <header>
-        <div class="highscore-button">placeholder button</div>
+        <div id="highscore-button">
+            <a href="highscores.html">View High Scores</a>
+        </div>
         <div id="timer"></div>
     </header>
     
@@ -23,6 +25,19 @@
                     <li id="choice4"></li>
                 </ul>
                 <button id="start-game-button">Start Game</button>
+                <p id="finalScoreP"></p>
+                <form id="scoreForm">
+                    <input type="text" name="initials" id="initials" placeholder="Enter your initials" />
+                    <button id="saveScore">Submit</button>
+                </form>
+            </div>
+            <div id="highScoreDiv">
+                <h2>High Scores</h2>
+                <h3 id="highScoreLister"></h3>
+                <h3 id="highScoreInitialsLister"></h3>
+                <form action="index.html">
+                    <button type="submit">Go Back </button>
+                </form>
             </div>
         </section>
     </main>
