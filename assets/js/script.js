@@ -7,6 +7,17 @@ var choice2 = document.getElementById('choice2');
 var choice3 = document.getElementById('choice3');
 var choice4 = document.getElementById('choice4');
 var li = document.getElementById('choice-list');
+var startButton = document.getElementById('start-game-button');
+
+//main page - quiz desctiption and button to start quiz
+var startPage = function () {
+    startButton.addEventListener("click", questionGame)
+    askQuestion.textContent = "Coding Quiz Challenge"
+    choice1.textContent = "When you start the quiz, the timer will start counting down from 120 seconds."
+    choice2.textContent = "Answer each question as quickly as you can."
+    choice3.textContent = "Wrong answers will remove 10 seconds from your remaining time."
+    choice4.textContent = "However much time is left when you complete will be your final score. Good luck!"
+}
 
 var questionCollection = [
     {
@@ -34,22 +45,16 @@ var questionCollection = [
         a: 'choice3'
     }
 ]
+//set initial question index
+var questionIndex = 0;
 
-//main page - button to start quiz
-
-var questionGame = function() {
+var questionGame = function () {
     //delete main pages content
+    document.getElementById("start-game-button").style.display = "none";
+
     //start timer
 
-        //display questions and choices on the page
-        askQuestion.textContent = questionCollection[0].q;
-        choice1.textContent = questionCollection[0].choice1;
-        choice2.textContent = questionCollection[0].choice2;
-        choice3.textContent = questionCollection[0].choice3;
-        choice4.textContent = questionCollection[0].choice4;
-        rightOrWrong();
-        //add event listener on to each 
-        //right or wrong answer?
+    nextQuestion();
 
     //set timer to high score
     //bring up page for high score
@@ -58,23 +63,33 @@ var questionGame = function() {
     //go back to main page
 }
 
-
-
+//display questions and choices on the page with right/wrong function index listener
+var nextQuestion = function () {
+    askQuestion.textContent = questionCollection[questionIndex].q;
+    choice1.addEventListener("click", rightOrWrong); choice1.textContent = questionCollection[questionIndex].choice1;
+    choice2.addEventListener("click", rightOrWrong); choice2.textContent = questionCollection[questionIndex].choice2;
+    choice3.addEventListener("click", rightOrWrong); choice3.textContent = questionCollection[questionIndex].choice3;
+    choice4.addEventListener("click", rightOrWrong); choice4.textContent = questionCollection[questionIndex].choice4;
+};
 // Right or Wrong Function
 var rightOrWrong = function (event) {
     var targetEl = event.target;
-    if (targetEl.id === questionCollection.a) {
+    if (targetEl.id === questionCollection[questionIndex].a) {
         window.alert("Yay, you got it!")
-    } else if (targetEl.id !== questionCollection.a){
+        questionIndex++;
+        nextQuestion();
+    } else if (targetEl.id !== questionCollection[questionIndex].a) {
         window.alert("Aww Shux ya missed it kid")
+        questionIndex++;
+        nextQuestion();
     }
     console.log("started");
 }
 //top left button to view highscore at anytime
 
-questionGame();
+startPage();
 
-main.addEventListener("click", rightOrWrong);
+// main.addEventListener("click", rightOrWrong);
 
 
 //for each 
