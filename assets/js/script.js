@@ -49,12 +49,23 @@ var questionCollection = [
 var questionIndex = 0;
 
 var questionGame = function () {
-    //delete main pages content
+    //hide start button
     document.getElementById("start-game-button").style.display = "none";
 
     //start timer
+    var timeLeft = 120;
+    var downloadTimer = setInterval(function () {
+        if (timeLeft <= 0) {
+            clearInterval(downloadTimer);
+            document.getElementById("timer").innerHTML = "Finished";
+        } else {
+            document.getElementById("timer").innerHTML = timeLeft + " seconds remaining";
+        }
+        timeLeft -= 1;
+    }, 1000);
 
-    nextQuestion();
+    //main game functionality
+    nextQuestion(timeLeft);
 
     //set timer to high score
     //bring up page for high score
@@ -65,12 +76,17 @@ var questionGame = function () {
 
 //display questions and choices on the page with right/wrong function index listener
 var nextQuestion = function () {
-    askQuestion.textContent = questionCollection[questionIndex].q;
-    choice1.addEventListener("click", rightOrWrong); choice1.textContent = questionCollection[questionIndex].choice1;
-    choice2.addEventListener("click", rightOrWrong); choice2.textContent = questionCollection[questionIndex].choice2;
-    choice3.addEventListener("click", rightOrWrong); choice3.textContent = questionCollection[questionIndex].choice3;
-    choice4.addEventListener("click", rightOrWrong); choice4.textContent = questionCollection[questionIndex].choice4;
+    if (questionCollection[questionIndex] < 9) {
+        askQuestion.textContent = questionCollection[questionIndex].q;
+        choice1.addEventListener("click", rightOrWrong); choice1.textContent = questionCollection[questionIndex].choice1;
+        choice2.addEventListener("click", rightOrWrong); choice2.textContent = questionCollection[questionIndex].choice2;
+        choice3.addEventListener("click", rightOrWrong); choice3.textContent = questionCollection[questionIndex].choice3;
+        choice4.addEventListener("click", rightOrWrong); choice4.textContent = questionCollection[questionIndex].choice4;
+    } else {
+        console.log(timeLeft)
+    }
 };
+
 // Right or Wrong Function
 var rightOrWrong = function (event) {
     var targetEl = event.target;
