@@ -8,8 +8,8 @@
 </head>
 <body>
     <header>
-        <div id="highscore-button">
-            <a href="highscores.html">View High Scores</a>
+        <div>
+            <a href="highscores.html" id="highscore-button">View High Scores</a>
         </div>
         <div id="timer"></div>
     </header>
@@ -29,16 +29,10 @@
                 <form id="scoreForm">
                     <input type="text" name="initials" id="initials" placeholder="Enter your initials" />
                     <button id="saveScore">Submit</button>
+                    <button id="backToMain">Try Again!</button>
                 </form>
             </div>
-            <div id="highScoreDiv">
-                <h2>High Scores</h2>
-                <h3 id="highScoreLister"></h3>
-                <h3 id="highScoreInitialsLister"></h3>
-                <form action="index.html">
-                    <button type="submit" id="submitHighScore">Go Back </button>
-                </form>
-            </div>
+            
         </section>
     </main>
     <script src="./assets/js/script.js"></script>

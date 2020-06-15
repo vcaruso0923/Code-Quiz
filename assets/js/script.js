@@ -15,15 +15,15 @@ var highScoreButton = document.getElementById('highscore-button');
 var highScoreLister = document.getElementById('highScoreLister');
 var highScoreInitialsLister = document.getElementById('highScoreInitialsLister');
 var highScoreDiv = document.getElementById("highScoreDiv")
-var submitHighScore = document.getElementById("submitHighScore")
+var saveScore = document.getElementById("saveScore")
+var backToMain = document.getElementById("backToMain")
 
 //main page - quiz desctiption and button to start quiz
 var startPage = function () {
-    highScoreDiv.style.display = "none";
     scoreForm.style.display = "none";
     startButton.addEventListener("click", questionGame)
     askQuestion.textContent = "Coding Quiz Challenge"
-    choice1.textContent = "When you start the quiz, the timer will start counting down from 120 seconds."
+    choice1.textContent = "When you start the quiz, the timer will start counting down from 99 seconds."
     choice2.textContent = "Answer each question as quickly as you can."
     choice3.textContent = "Wrong answers will remove 10 seconds from your remaining time."
     choice4.textContent = "However much time is left when you complete will be your final score. Good luck!"
@@ -120,7 +120,7 @@ var questionGame = function () {
     scoreForm.style.display = "none";
 
     //start timer
-    var timeLeft = 120;
+    var timeLeft = 99;
     var countdownTimer = setInterval(function () {
         if (timeLeft <= 0) {
             clearInterval(countdownTimer);
@@ -153,7 +153,6 @@ var nextQuestion = function () {
 var rightOrWrong = function (event) {
     var targetEl = event.target;
     if (targetEl.id === questionCollection[questionIndex].a) {
-        window.alert("Yay, you got it!")
         questionIndex++;
         nextQuestion();
     } else if (targetEl.id !== questionCollection[questionIndex].a) {
@@ -163,51 +162,41 @@ var rightOrWrong = function (event) {
         document.getElementById("timer").innerHTML = timeLeft;
         console.log(timeLeft)
         //next question
-        window.alert("Aww Shux ya missed it kid")
         questionIndex++;
         nextQuestion();
     };
 }
 
+//End of game 
 var endGamePage = function () {
     //hide timer
     timer.style.display = "none";
     //set timer to high score and retrieve saved high score
     var currentScore = document.getElementById("timer").innerHTML;
-    var storedScore = localStorage.getItem("highScore");
-    var storedName = localStorage.getItem("highScoreInitials");
-    window.alert(storedName)
-
+    localStorage.setItem("currentScore", currentScore);
 
     //build page
     askQuestion.textContent = "All Done!";
     choiceList.style.display = "none";
     scoreForm.style.display = "block";
     finalScoreP.textContent = "Your final score is " + currentScore;
-
-    //save to local storage
-    submitHighScore.addEventListener("click" , saveHighScore);
-    var saveHighScore = function (event) {
-        var currentScore = document.getElementById("timer").innerHTML;
-        var storedScore = localStorage.getItem("highScore");
-
-        if (currentScore > storedScore) {
-            localStorage.setItem('highScore' , currentScore); 
-            var input = document.getElementById("initials").value;
-            localStorage.setItem("highScoreInitials", input);
-        }
-    }  
 }
 
-//Add high score to page
-highScoreLister.textContent = "The High Score is " + localStorage.getItem("highScore");
-highScoreInitialsLister.textContent = "The High Scorer is " + localStorage.getItem("highScoreInitials");
+//save high score to local storage
+saveScore.addEventListener("click", function (event) {
+    event.preventDefault();
+    var currentScore = localStorage.getItem("currentScore");
+    var storedScore = localStorage.getItem("highScore");
 
-//display high score when button clicked
-highScoreButton.addEventListener("click" , showHighScores);
-var showHighScores = function (event) {
-    highScoreDiv.style.display = "block";
-}
+    if (currentScore >= storedScore) {
+    localStorage.setItem('highScore', currentScore);
+    var input = document.getElementById("initials").value;
+    localStorage.setItem("highScoreInitials", input);
+    }
+});
+
+backToMain.addEventListener("click", startPage);
+
 
 startPage();
 

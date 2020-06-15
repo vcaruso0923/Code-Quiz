@@ -17,6 +17,11 @@ header {
     justify-self: center;
 }
 
+#highScoreDiv {
+    text-align: center;
+    padding-top: 50px;
+}
+
 #content-wrapper {
     padding-top: 100px;
     padding-bottom: 50px;
@@ -25,6 +30,11 @@ header {
 button {
     border-radius: 5px;
     background-color: aqua;
+}
+
+button:hover {
+    text-decoration: underline;
+    border: 3px solid black;
 }
 
 h2 {
