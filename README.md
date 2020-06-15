@@ -17,7 +17,7 @@ When the game is over,
 then you can save your initials and score.
 ```
 
-The following animation demonstrates the application functionality:
+The following screenshot demonstrates the application functionality:
 
 ![code quiz](./assets/images/code-quiz.PNG)
 
