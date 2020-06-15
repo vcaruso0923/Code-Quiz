@@ -1,3 +1,7 @@
+* {
+    font-size: large;
+}
+
 header {
     display: flex;
 }
@@ -6,21 +10,43 @@ header {
     margin-left: auto;
 }
 
-#quiz-wrapper {
+#main {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    justify-self: center;
 }
 
-#question {
+#content-wrapper {
     padding-top: 100px;
     padding-bottom: 50px;
 }
 
+button {
+    border-radius: 5px;
+    background-color: aqua;
+}
+
+h2 {
+    font-size: 35px;
+    text-align: center;
+}
+
+h3 {
+    font-size: 25px;
+}
+
+p { 
+    font-size: 25px;
+}
+
 ul {
-    /* list-style: none; */
+    list-style: none;
 }
 
 li {
     padding: 10px;
+    margin: 10px;
+    background-color:cornflowerblue ;
+    border-radius: 5px;
 }

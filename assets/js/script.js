@@ -187,7 +187,10 @@ var endGamePage = function () {
 
     //save to local storage
     submitHighScore.addEventListener("click" , saveHighScore);
-    var saveHighScore = function () {
+    var saveHighScore = function (event) {
+        var currentScore = document.getElementById("timer").innerHTML;
+        var storedScore = localStorage.getItem("highScore");
+
         if (currentScore > storedScore) {
             localStorage.setItem('highScore' , currentScore); 
             var input = document.getElementById("initials").value;
