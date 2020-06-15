@@ -1,2 +1,2 @@
 highScoreLister.textContent = "The High Score is " + localStorage.getItem("highScore") + " points!";
-highScoreInitialsLister.textContent = "The High Scorer is " + localStorage.getItem("highScoreInitials");
+highScoreInitialsLister.textContent = "The High Scoring User is " + localStorage.getItem("highScoreInitials");

@@ -29,85 +29,87 @@ var startPage = function () {
     choice4.textContent = "However much time is left when you complete will be your final score. Good luck!"
 }
 
+var timeLeft = 99;
+
 var questionCollection = [
     {
-        q: "Question 1",
-        choice1: '1',
-        choice2: '2',
-        choice3: '3',
-        choice4: '4',
+        q: "How would you listen for an event i.e. a click?",
+        choice1: '.addEventListener',
+        choice2: 'style.display = "none"',
+        choice3: 'document.getElementById',
+        choice4: '.innerHTML',
         a: 'choice1'
     },
     {
-        q: "Question 2",
-        choice1: '1',
-        choice2: '2',
-        choice3: '3',
-        choice4: '4',
+        q: "How would you change the CSS display styling of a selected element?",
+        choice1: '.addEventListener',
+        choice2: 'style.display = "none"',
+        choice3: 'document.getElementById',
+        choice4: '.innerHTML',
         a: 'choice2'
     },
     {
-        q: "Question 3",
-        choice1: '1',
-        choice2: '2',
-        choice3: '3',
-        choice4: '4',
+        q: "How would you get and element by it's ID?",
+        choice1: '.addEventListener',
+        choice2: 'style.display = "none"',
+        choice3: 'document.getElementById',
+        choice4: '.innerHTML',
         a: 'choice3'
     },
     {
-        q: "Question 4",
-        choice1: '1',
-        choice2: '2',
-        choice3: '3',
-        choice4: '4',
+        q: "How would you set a selected element's HTML?",
+        choice1: '.addEventListener',
+        choice2: 'style.display = "none"',
+        choice3: 'document.getElementById',
+        choice4: '.innerHTML',
         a: 'choice4'
     },
     {
-        q: "Question 5",
-        choice1: '1',
-        choice2: '2',
-        choice3: '3',
-        choice4: '4',
+        q: "How would you define something to be logged in the console?",
+        choice1: 'console.log()',
+        choice2: 'window.alert()',
+        choice3: 'window.prompt',
+        choice4: 'window.confirm',
         a: 'choice1'
     },
     {
-        q: "Question 6",
-        choice1: '1',
-        choice2: '2',
-        choice3: '3',
-        choice4: '4',
+        q: "How would you make a window pop up that will contain alert text only?",
+        choice1: 'console.log()',
+        choice2: 'window.alert()',
+        choice3: 'window.prompt',
+        choice4: 'window.confirm',
         a: 'choice2'
     },
     {
-        q: "Question 7",
-        choice1: '1',
-        choice2: '2',
-        choice3: '3',
-        choice4: '4',
+        q: "How would you make a window pop up that will ask a user for text input?",
+        choice1: 'console.log()',
+        choice2: 'window.alert()',
+        choice3: 'window.prompt',
+        choice4: 'window.confirm',
         a: 'choice3'
     },
     {
-        q: "Question 8",
-        choice1: '1',
-        choice2: '2',
-        choice3: '3',
-        choice4: '4',
+        q: "How would you make a window pop up that will ask a OK or Cancel input?",
+        choice1: 'console.log()',
+        choice2: 'window.alert()',
+        choice3: 'window.prompt',
+        choice4: 'window.confirm',
         a: 'choice4'
     },
     {
-        q: "Question 9",
-        choice1: '1',
-        choice2: '2',
-        choice3: '3',
-        choice4: '4',
+        q: "How would you prevent the default action from occuring on an event?",
+        choice1: 'event.preventDefault();',
+        choice2: 'localStorage.getItem',
+        choice3: 'localStorage.setItem',
+        choice4: 'function()',
         a: 'choice1'
     },
     {
-        q: "Question 10",
-        choice1: '1',
-        choice2: '2',
-        choice3: '3',
-        choice4: '4',
+        q: "How would you retrieve something from local storage?",
+        choice1: 'event.preventDefault();',
+        choice2: 'localStorage.getItem()',
+        choice3: 'localStorage.setItem()',
+        choice4: 'function()',
         a: 'choice2'
     },
 ]
@@ -120,7 +122,6 @@ var questionGame = function () {
     scoreForm.style.display = "none";
 
     //start timer
-    var timeLeft = 99;
     var countdownTimer = setInterval(function () {
         if (timeLeft <= 0) {
             clearInterval(countdownTimer);
@@ -157,10 +158,9 @@ var rightOrWrong = function (event) {
         nextQuestion();
     } else if (targetEl.id !== questionCollection[questionIndex].a) {
         //subtract time
-        var timeLeft = document.getElementById("timer").innerHTML;
         timeLeft = timeLeft - 10;
         document.getElementById("timer").innerHTML = timeLeft;
-        console.log(timeLeft)
+        console.log(timeLeft);
         //next question
         questionIndex++;
         nextQuestion();
@@ -199,5 +199,3 @@ backToMain.addEventListener("click", startPage);
 
 
 startPage();
-
-//event listener to submit button to save score initals

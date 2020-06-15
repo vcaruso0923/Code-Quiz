@@ -60,3 +60,8 @@ li {
     background-color:cornflowerblue ;
     border-radius: 5px;
 }
+
+li:hover {
+    text-decoration: underline;
+    border: 3px solid black;
+}
