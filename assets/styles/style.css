@@ -4,10 +4,35 @@
 
 header {
     display: flex;
+    align-items: center;
+}
+
+#time-left {
+    margin-left: auto;
+    background-color: aqua;
+    padding-left: 20px;
+    border-radius: 5px;
+}
+
+#time-left p {
+    display: inline-block;
+    font-size: 30px;
 }
 
 #timer {
-    margin-left: auto;
+    display: inline-block;
+    padding: 10px;
+    font-weight: bold;
+    background-color: aqua;
+    font-size: 30px;
+
+}
+
+#highscore-button {
+    background-color: aqua;
+    padding: 20px;
+    font-size: 30px;
+    border-radius: 5px;
 }
 
 #main {

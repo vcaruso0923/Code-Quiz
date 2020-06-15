@@ -29,8 +29,10 @@ var startPage = function () {
     choice4.textContent = "However much time is left when you complete will be your final score. Good luck!"
 }
 
+//set timer variable globally
 var timeLeft = 99;
 
+//Collection of 10 basic Javascript trivia questions
 var questionCollection = [
     {
         q: "How would you listen for an event i.e. a click?",
@@ -138,9 +140,12 @@ var questionGame = function () {
     nextQuestion();
 }
 
-//display questions and choices on the page with right/wrong function index listener if questions are left score page if not
+// show score page if no q's left or if time ran out, display questions and choices on the page with index listener if questions remain sent to right/wrong function
 var nextQuestion = function () {
     if (questionCollection[questionIndex] === undefined) {
+        endGamePage();
+    } else if (timeLeft <= 0) {
+        window.alert("Time has run out!")
         endGamePage();
     } else {
         askQuestion.textContent = questionCollection[questionIndex].q;
@@ -150,17 +155,16 @@ var nextQuestion = function () {
         choice4.addEventListener("click", rightOrWrong); choice4.textContent = questionCollection[questionIndex].choice4;
     };
 };
-// Right or Wrong Function
+// Right or Wrong Function - increase questionIndex for both - subtract time if wrong. 
 var rightOrWrong = function (event) {
     var targetEl = event.target;
     if (targetEl.id === questionCollection[questionIndex].a) {
+        //next question
         questionIndex++;
         nextQuestion();
     } else if (targetEl.id !== questionCollection[questionIndex].a) {
         //subtract time
         timeLeft = timeLeft - 10;
-        document.getElementById("timer").innerHTML = timeLeft;
-        console.log(timeLeft);
         //next question
         questionIndex++;
         nextQuestion();
@@ -171,7 +175,7 @@ var rightOrWrong = function (event) {
 var endGamePage = function () {
     //hide timer
     timer.style.display = "none";
-    //set timer to high score and retrieve saved high score
+    //set timer to current score to compare to high score
     var currentScore = document.getElementById("timer").innerHTML;
     localStorage.setItem("currentScore", currentScore);
 
@@ -182,7 +186,7 @@ var endGamePage = function () {
     finalScoreP.textContent = "Your final score is " + currentScore;
 }
 
-//save high score to local storage
+//save high score to local storage if it beat the previous
 saveScore.addEventListener("click", function (event) {
     event.preventDefault();
     var currentScore = localStorage.getItem("currentScore");
@@ -195,7 +199,8 @@ saveScore.addEventListener("click", function (event) {
     }
 });
 
+//return to main page from high score page
 backToMain.addEventListener("click", startPage);
 
-
+//Main page - starts it all
 startPage();
