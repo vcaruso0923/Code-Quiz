@@ -1,10 +1,12 @@
 # Code Quiz
 
-A relatively simple quiz on basic Javascript concepts
+## Overview
+A relatively simple quiz to test your knowledge on basic Javascript concepts.
 
+## Link
 https://vcaruso0923.github.io/Code-Quiz/
 
-## Acceptance Criteria
+## Functionality
 
 Given that you are taking a code quiz:
 When you click the start button,
@@ -21,4 +23,3 @@ then you can save your initials and score.
 The following screenshot demonstrates the application functionality:
 
 ![code quiz](./assets/images/code-quiz.PNG)
-
